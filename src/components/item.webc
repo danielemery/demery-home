@@ -1,0 +1,7 @@
+<style>
+  .test {
+    color: red;
+  }
+</style>
+
+<p class="test"><slot>Unnamed Item</slot></p>

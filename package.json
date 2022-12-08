@@ -1,0 +1,24 @@
+{
+  "name": "@danielemeryau/home",
+  "version": "0.0.1",
+  "description": "Simple landing page for https://demery.net",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielemery/demery-home.git"
+  },
+  "author": "Daniel Emery <daniel@demery.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danielemery/demery-home/issues"
+  },
+  "homepage": "https://github.com/danielemery/demery-home#readme",
+  "dependencies": {
+    "@11ty/eleventy": "^2.0.0-canary.18",
+    "@11ty/eleventy-plugin-webc": "^0.8.0",
+    "html-minifier": "^4.0.0"
+  }
+}

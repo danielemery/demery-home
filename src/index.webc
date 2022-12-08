@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Daniel Emery - Software Engineer</title>
+    <style @raw="getCss(page.url)" webc:keep></style>
+    <script @raw="getJs(page.url)" webc:keep></script>
+  </head>
+  <body>
+    <item>GitHub</item>
+    <item>CV</item>
+    <item></item>
+  </body>
+</html>
