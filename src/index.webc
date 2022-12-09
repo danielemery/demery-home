@@ -10,5 +10,6 @@
     <item>GitHub</item>
     <item>CV</item>
     <item></item>
+    <span @html="environment.email"></span>
   </body>
 </html>

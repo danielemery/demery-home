@@ -6,4 +6,4 @@ install:
 	
 build:
 	echo "Building static site"
-	npx @11ty/eleventy
+	doppler run -- npx @11ty/eleventy
