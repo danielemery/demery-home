@@ -2,14 +2,36 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Daniel Emery - Software Engineer</title>
+    <title @text="`${gravatar.name.formatted} - ${gravatar.aboutMe}`"></title>
     <style @raw="getCss(page.url)" webc:keep></style>
     <script @raw="getJs(page.url)" webc:keep></script>
+    <style>
+      :root {
+        --system-ui: system-ui, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu,
+          Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif,
+          "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      }
+      body {
+        background-color: #222;
+        font-family: var(--system-ui);
+      }
+
+      h2 {
+        font-size: 18px;
+      }
+    </style>
   </head>
   <body>
-    <item>GitHub</item>
-    <item>CV</item>
-    <item></item>
-    <span @html="environment.email"></span>
+    <header
+      @text="`${gravatar.name.formatted}`"
+      :sub-heading="gravatar.aboutMe"
+      :headshot-url="gravatar.thumbnailUrl"
+    ></header>
+    <item-container>
+      <item>GitHub</item>
+      <item>CV</item>
+      <item @text="gravatar.hash"></item>
+    </item-container>
+    <span @text="environment.email"></span>
   </body>
 </html>

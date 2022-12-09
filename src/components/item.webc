@@ -1,7 +1,7 @@
 <style>
-  .test {
+  .item {
     color: red;
   }
 </style>
 
-<p class="test"><slot>Unnamed Item</slot></p>
+<article class="item"><slot>Unnamed Item</slot></article>

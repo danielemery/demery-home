@@ -1,0 +1,7 @@
+<style>
+  .item-container {
+    display: flex;
+  }
+</style>
+
+<div class="item-container"><slot></slot></div>

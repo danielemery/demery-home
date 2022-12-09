@@ -1,0 +1,23 @@
+<style>
+  .site-heading {
+    display: flex;
+    justify-content: center;
+  }
+
+  .site-heading h1,
+  h2 {
+    color: white;
+  }
+
+  .site-heading img {
+    margin: 10%;
+  }
+</style>
+
+<section class="site-heading">
+  <img :src="headshotUrl" />
+  <div>
+    <h1><slot>My Site</slot></h1>
+    <h2 @text="subHeading">A little about me.</h2>
+  </div>
+</section>
