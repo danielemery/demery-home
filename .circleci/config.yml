@@ -90,7 +90,7 @@ workflows:
               only: main
           context: demery-home-production
 
-      - deploy-staging:
+      - deploy:
           name: deploy-staging
           requires:
             - build-staging
@@ -107,7 +107,7 @@ workflows:
             branches:
               only: main
 
-      - deploy-production:
+      - deploy:
           name: deploy-production
           requires:
             - build-production
