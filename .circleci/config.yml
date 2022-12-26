@@ -14,7 +14,7 @@ jobs:
           command: (curl -Ls https://cli.doppler.com/install.sh || wget -qO- https://cli.doppler.com/install.sh) | sh -s -- --no-install --no-package-manager
       - run:
           name: Setup Doppler
-          command: doppler setup --no-interactive --project demery-home --config dev --token ${DOPPLER_TOKEN}
+          command: ./doppler setup --no-interactive --project demery-home --config dev --token ${DOPPLER_TOKEN}
       - run:
           name: Build
           command: |
@@ -30,7 +30,7 @@ jobs:
           command: (curl -Ls https://cli.doppler.com/install.sh || wget -qO- https://cli.doppler.com/install.sh) | sh -s -- --no-install --no-package-manager
       - run:
           name: Setup Doppler
-          command: doppler setup --no-interactive --project demery-home --config stg --token ${DOPPLER_TOKEN}
+          command: ./doppler setup --no-interactive --project demery-home --config stg --token ${DOPPLER_TOKEN}
       - run:
           name: Build for staging
           command: make ci
@@ -50,7 +50,7 @@ jobs:
           command: (curl -Ls https://cli.doppler.com/install.sh || wget -qO- https://cli.doppler.com/install.sh) | sh -s -- --no-install --no-package-manager
       - run:
           name: Setup Doppler
-          command: doppler setup --no-interactive --project demery-home --config prd --token ${DOPPLER_TOKEN}
+          command: ./doppler setup --no-interactive --project demery-home --config prd --token ${DOPPLER_TOKEN}
       - run:
           name: Build for production
           command: make ci
