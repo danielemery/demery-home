@@ -13,6 +13,9 @@ jobs:
           name: Install Doppler
           command: (curl -Ls https://cli.doppler.com/install.sh || wget -qO- https://cli.doppler.com/install.sh) | sh -s -- --no-install --no-package-manager
       - run:
+          name: Setup Doppler
+          command: doppler setup --no-interactive --project demery-home --config dev --token ${DOPPLER_TOKEN}
+      - run:
           name: Build
           command: |
             make ci
