@@ -43,8 +43,8 @@
     ></header>
     <item-container>
         <item name="GitHub" link="https://github.com/danielemery"><github /></item>
-        <item name="Invariably Abandoned" link="https://invariablyabandoned.com"><blog-solid /></item>
-        <item name="CV" link="https://cv.demery.net"><id-card-alt-solid /></item>
+        <!-- <item name="Invariably Abandoned" link="https://invariablyabandoned.com"><blog-solid /></item> -->
+        <!-- <item name="CV" link="https://cv.demery.net"><id-card-alt-solid /></item> -->
     </item-container>
     <link-container>
       <footer-link :link="`mailto:${environment.email}`"><envelope-solid /></footer-link>
