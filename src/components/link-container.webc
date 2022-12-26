@@ -1,0 +1,10 @@
+<style>
+  .link-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    height: 40px;
+  }
+</style>
+
+<div class="link-container"><slot></slot></div>

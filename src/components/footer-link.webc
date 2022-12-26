@@ -1,0 +1,16 @@
+<style>
+  .link {
+    margin: 0 10px;
+  }
+
+  .link svg {
+    fill: var(--accentOne);
+    height: 100%;
+  }
+
+  .link:hover svg {
+    fill: var(--accentThree);
+  }
+</style>
+
+<a :href="link" class="link"><slot></slot></a>

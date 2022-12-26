@@ -1,16 +1,14 @@
 <style>
   .item {
-    /* border-color: var(--accentOne); */
     border-color: white;
     border-style: solid;
     border-width: 1px;
     border-radius: 10px;
-    width: 400px;
-    height: 400px;
+    width: 250px;
+    height: 250px;
     margin: 0 15px;
     background-color: var(--backgroundLight);
     cursor: pointer;
-    /* filter: drop-shadow(1px 1px white); */
   }
 
   .item:hover {
@@ -22,6 +20,23 @@
     width: 100%;
     text-align: center;
   }
+
+  .item div.container {
+    display: flex;
+    align-items: center;
+  }
+
+  .item svg {
+    fill: white;
+    padding: 0 50px;
+    width: 150px;
+    margin: auto;
+  }
 </style>
 
-<a :href="link"><article class="item"><h3 @text="name"></h3></article></a>
+<a :href="link"
+  ><article class="item">
+    <h3 @text="name"></h3>
+    <div class="container"><slot>Icon Here</slot></div>
+  </article></a
+>
