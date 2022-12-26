@@ -4,21 +4,21 @@ orbs:
   aws-s3: circleci/aws-s3@3.0.0
 
 jobs:
-  test:
-    docker:
-      - image: circleci/node:16
-    steps:
-      - checkout
-      - run:
-          name: Install Doppler
-          command: (curl -Ls https://cli.doppler.com/install.sh || wget -qO- https://cli.doppler.com/install.sh) | sh -s -- --no-install --no-package-manager
-      - run:
-          name: Setup Doppler
-          command: ./doppler setup --no-interactive --project demery-home --config dev --token ${DOPPLER_TOKEN}
-      - run:
-          name: Build
-          command: |
-            make ci
+  # test:
+  #   docker:
+  #     - image: circleci/node:16
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: Install Doppler
+  #         command: (curl -Ls https://cli.doppler.com/install.sh || wget -qO- https://cli.doppler.com/install.sh) | sh -s -- --no-install --no-package-manager
+  #     - run:
+  #         name: Setup Doppler
+  #         command: ./doppler setup --no-interactive --project demery-home --config dev --token ${DOPPLER_TOKEN}
+  #     - run:
+  #         name: Build
+  #         command: |
+  #           make ci
 
   deploy-staging:
     docker:
@@ -64,11 +64,11 @@ workflows:
   version: 2
   ci:
     jobs:
-      - test
+      # - test
       - deploy-staging:
           name: deploy-staging
-          requires:
-            - test
+          # requires:
+          #   - test
           filters:
             branches:
               only: main
