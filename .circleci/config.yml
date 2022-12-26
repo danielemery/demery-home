@@ -20,9 +20,9 @@ jobs:
   #         command: |
   #           make ci
 
-  deploy-staging:
+  build-staging:
     docker:
-      - image: "cimg/python:3.6"
+      - image: circleci/node:16
     steps:
       - checkout
       - run:
@@ -34,15 +34,14 @@ jobs:
       - run:
           name: Build for staging
           command: make ci
-      - aws-s3/sync:
-          arguments: |
-            --cache-control "max-age=86400"
-          from: _site
-          to: "s3://${AWS_BUCKET_NAME}"
+      - persist_to_workspace:
+          root: .
+          paths:
+            - _site/*
 
-  deploy-production:
+  build-production:
     docker:
-      - image: "cimg/python:3.6"
+      - image: circleci/node:16
     steps:
       - checkout
       - run:
@@ -54,25 +53,52 @@ jobs:
       - run:
           name: Build for production
           command: make ci
+      - persist_to_workspace:
+          root: .
+          paths:
+            - _site/*
+
+  deploy:
+    docker:
+      - image: "cimg/python:3.6"
+    steps:
+      - attach_workspace:
+          at: .
       - aws-s3/sync:
           arguments: |
             --cache-control "max-age=86400"
-          from: _site
+          from: public
           to: "s3://${AWS_BUCKET_NAME}"
+
 
 workflows:
   version: 2
   ci:
     jobs:
       # - test
-      - deploy-staging:
-          name: deploy-staging
-          # requires:
-          #   - test
+      - build-staging:
+          name: build-staging
           filters:
             branches:
               only: main
           context: demery-home-staging
+
+      - build-production:
+          name: build-production
+          filters:
+            branches:
+              only: main
+          context: demery-home-production
+
+      - deploy-staging:
+          name: deploy-staging
+          requires:
+            - build-staging
+          filters:
+            branches:
+              only: main
+          context: demery-home-staging
+
       - production-approval:
           type: approval
           requires:
@@ -80,9 +106,11 @@ workflows:
           filters:
             branches:
               only: main
+
       - deploy-production:
           name: deploy-production
           requires:
+            - build-production
             - production-approval
           filters:
             branches:
