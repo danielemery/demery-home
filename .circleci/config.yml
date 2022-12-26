@@ -34,10 +34,13 @@ jobs:
       - run:
           name: Build for staging
           command: make ci
+      - run:
+          name: Move into staging directory
+          command: mv _site staging
       - persist_to_workspace:
           root: .
           paths:
-            - _site/*
+            - staging/*
 
   build-production:
     docker:
@@ -53,12 +56,15 @@ jobs:
       - run:
           name: Build for production
           command: make ci
+      - run:
+          name: Move into prod directory
+          command: mv _site prod
       - persist_to_workspace:
           root: .
           paths:
-            - _site/*
+            - prod/*
 
-  deploy:
+  deploy-staging:
     docker:
       - image: "cimg/python:3.6"
     steps:
@@ -67,7 +73,19 @@ jobs:
       - aws-s3/sync:
           arguments: |
             --cache-control "max-age=86400"
-          from: _site
+          from: staging
+          to: "s3://${AWS_BUCKET_NAME}"
+
+  deploy-prod:
+    docker:
+      - image: "cimg/python:3.6"
+    steps:
+      - attach_workspace:
+          at: .
+      - aws-s3/sync:
+          arguments: |
+            --cache-control "max-age=86400"
+          from: prod
           to: "s3://${AWS_BUCKET_NAME}"
 
 
@@ -90,7 +108,7 @@ workflows:
               only: main
           context: demery-home-production
 
-      - deploy:
+      - deploy-staging:
           name: deploy-staging
           requires:
             - build-staging
@@ -107,7 +125,7 @@ workflows:
             branches:
               only: main
 
-      - deploy:
+      - deploy-prod:
           name: deploy-production
           requires:
             - build-production
