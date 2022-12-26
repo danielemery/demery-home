@@ -4,26 +4,53 @@ orbs:
   aws-s3: circleci/aws-s3@3.0.0
 
 jobs:
-  build:
+  test:
     docker:
       - image: circleci/node:16
     steps:
       - checkout
       - run:
+          name: Install Doppler
+          command: (curl -Ls https://cli.doppler.com/install.sh || wget -qO- https://cli.doppler.com/install.sh) | sh -s -- --no-install --no-package-manager
+      - run:
           name: Build
           command: |
             make
-      - persist_to_workspace:
-          root: .
-          paths:
-            - _site/*
 
-  deploy:
+  deploy-staging:
     docker:
       - image: "cimg/python:3.6"
     steps:
-      - attach_workspace:
-          at: .
+      - checkout
+      - run:
+          name: Install Doppler
+          command: (curl -Ls https://cli.doppler.com/install.sh || wget -qO- https://cli.doppler.com/install.sh) | sh -s -- --no-install --no-package-manager
+      - run:
+          name: Setup Doppler
+          command: doppler setup --no-interactive --project demery-home --config stg --token ${DOPPLER_TOKEN}
+      - run:
+          name: Build for staging
+          command: make
+      - aws-s3/sync:
+          arguments: |
+            --cache-control "max-age=86400"
+          from: _site
+          to: "s3://${AWS_BUCKET_NAME}"
+
+  deploy-production:
+    docker:
+      - image: "cimg/python:3.6"
+    steps:
+      - checkout
+      - run:
+          name: Install Doppler
+          command: (curl -Ls https://cli.doppler.com/install.sh || wget -qO- https://cli.doppler.com/install.sh) | sh -s -- --no-install --no-package-manager
+      - run:
+          name: Setup Doppler
+          command: doppler setup --no-interactive --project demery-home --config prd --token ${DOPPLER_TOKEN}
+      - run:
+          name: Build for production
+          command: make
       - aws-s3/sync:
           arguments: |
             --cache-control "max-age=86400"
@@ -34,11 +61,11 @@ workflows:
   version: 2
   ci:
     jobs:
-      - build
-      - deploy:
+      - test
+      - deploy-staging:
           name: deploy-staging
           requires:
-            - build
+            - test
           filters:
             branches:
               only: main
@@ -50,7 +77,7 @@ workflows:
           filters:
             branches:
               only: main
-      - deploy:
+      - deploy-production:
           name: deploy-production
           requires:
             - production-approval
