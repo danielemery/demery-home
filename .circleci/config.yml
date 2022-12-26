@@ -1,0 +1,60 @@
+version: 2.1
+
+orbs:
+  aws-s3: circleci/aws-s3@3.0.0
+
+jobs:
+  build:
+    docker:
+      - image: circleci/node:16
+    steps:
+      - checkout
+      - run:
+          name: Build
+          command: |
+            make
+      - persist_to_workspace:
+          root: .
+          paths:
+            - _site/*
+
+  deploy:
+    docker:
+      - image: "cimg/python:3.6"
+    steps:
+      - attach_workspace:
+          at: .
+      - aws-s3/sync:
+          arguments: |
+            --cache-control "max-age=86400"
+          from: _site
+          to: "s3://${AWS_BUCKET_NAME}"
+
+workflows:
+  version: 2
+  ci:
+    jobs:
+      - build
+      - deploy:
+          name: deploy-staging
+          requires:
+            - build
+          filters:
+            branches:
+              only: main
+          context: demery-home-staging
+      - production-approval:
+          type: approval
+          requires:
+            - deploy-staging
+          filters:
+            branches:
+              only: main
+      - deploy:
+          name: deploy-production
+          requires:
+            - production-approval
+          filters:
+            branches:
+              only: main
+          context: demery-home-production
