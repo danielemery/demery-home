@@ -67,7 +67,7 @@ jobs:
       - aws-s3/sync:
           arguments: |
             --cache-control "max-age=86400"
-          from: public
+          from: _site
           to: "s3://${AWS_BUCKET_NAME}"
 
 
