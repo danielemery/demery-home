@@ -1,6 +1,6 @@
 make: install build
 
-make-ci: install build-ci
+ci: install build-ci
 
 install:
 	echo "Installing required packages"

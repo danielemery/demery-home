@@ -15,7 +15,7 @@ jobs:
       - run:
           name: Build
           command: |
-            make-ci
+            make ci
 
   deploy-staging:
     docker:
@@ -30,7 +30,7 @@ jobs:
           command: doppler setup --no-interactive --project demery-home --config stg --token ${DOPPLER_TOKEN}
       - run:
           name: Build for staging
-          command: make-ci
+          command: make ci
       - aws-s3/sync:
           arguments: |
             --cache-control "max-age=86400"
@@ -50,7 +50,7 @@ jobs:
           command: doppler setup --no-interactive --project demery-home --config prd --token ${DOPPLER_TOKEN}
       - run:
           name: Build for production
-          command: make-ci
+          command: make ci
       - aws-s3/sync:
           arguments: |
             --cache-control "max-age=86400"
