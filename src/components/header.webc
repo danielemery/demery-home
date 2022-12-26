@@ -6,11 +6,16 @@
 
   .site-heading h1,
   h2 {
-    color: white;
+    color: var(--headerText);
+    width: 100%;
+    text-align: center;
   }
 
   .site-heading img {
-    margin: 10%;
+    width: 90px;
+    height: 90px;
+    margin-right: 10px;
+    display: none;
   }
 </style>
 

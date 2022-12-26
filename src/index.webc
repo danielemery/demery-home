@@ -10,14 +10,29 @@
         --system-ui: system-ui, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu,
           Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif,
           "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        --accentOne: #c586c0;
+        --accentTwo: #ce9178;
+        --accentThree: #dcdcaa;
+        --accentFour: #b5cea8;
+
+        --blue: #569cd6;
+
+        --background: #1e1e1e;
+        --backgroundLight: #222;
+        --backgroundHover: #333;
+        --headerText: #569cd6;
       }
       body {
-        background-color: #222;
+        background-color: var(--background);
         font-family: var(--system-ui);
       }
 
+      h1 {
+        font-size: 50px;
+      }
+
       h2 {
-        font-size: 18px;
+        font-size: 25px;
       }
     </style>
   </head>
@@ -28,9 +43,9 @@
       :headshot-url="gravatar.thumbnailUrl"
     ></header>
     <item-container>
-      <item>GitHub</item>
-      <item>CV</item>
-      <item @text="gravatar.hash"></item>
+        <item name="GitHub" link="https://github.com/danielemery"></item>
+        <item name="Invariably Abandoned" link="https://invariablyabandoned.com"></item>
+        <item name="CV" link="https://demery.net/cv"></item>
     </item-container>
     <span @text="environment.email"></span>
   </body>
