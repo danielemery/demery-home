@@ -1,6 +1,9 @@
 <style>
   .link {
     margin: 0 10px;
+    display: inline-block;
+    width: 40px;
+    height: 40px
   }
 
   .link svg {
