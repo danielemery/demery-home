@@ -22,5 +22,8 @@
     "@11ty/eleventy-fetch": "^3.0.0",
     "@11ty/eleventy-plugin-webc": "^0.8.0",
     "html-minifier": "^4.0.0"
+  },
+  "engines": {
+    "node": "20.8.0"
   }
 }
