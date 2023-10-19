@@ -30,8 +30,8 @@ jobs:
       - name: Set version info
         id: vars
         run: |
-          - echo "version_name=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
-          - echo "version_link=https://github.com/danielemery/demery-home/commits/$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+          echo "version_name=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+          echo "version_link=https://github.com/danielemery/demery-home/commits/$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
 
       - name: Build
         run: make build
@@ -72,8 +72,8 @@ jobs:
       - name: Set version info
         id: vars
         run: |
-          - echo "version_name=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
-          - echo "version_link=https://github.com/danielemery/demery-home/commits/$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+          echo "version_name=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+          echo "version_link=https://github.com/danielemery/demery-home/commits/$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
 
       - name: Build
         run: make build
