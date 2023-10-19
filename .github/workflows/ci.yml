@@ -28,7 +28,9 @@ jobs:
       - name: Set version info
         id: vars
         run: |
+          echo "setting version name to $(git rev-parse --short HEAD)"
           echo "version_name=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+          echo "setting version link to https://github.com/danielemery/demery-home/commits/$(git rev-parse HEAD)"
           echo "version_link=https://github.com/danielemery/demery-home/commits/$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
 
       - name: Build
