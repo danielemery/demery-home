@@ -52,5 +52,9 @@
       <!-- <footer-link :link="`address`"><bitcoin /></footer-link> -->
       <footer-link :link="constants.linkedInLink"><linkedin /></footer-link>
     </link-container>
+    <site-version
+      :link="`${constants.githubAccountLink}/${constants.websiteRepositoryName}/commit/${environment.gitFullCommitHash}`"
+      :text="`${environment.gitShortCommitHash}`"
+    ></site-version>
   </body>
 </html>
