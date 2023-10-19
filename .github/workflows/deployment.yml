@@ -27,10 +27,18 @@ jobs:
       - name: Install packages
         run: make install
 
+      - name: Set version info
+        id: vars
+        run: |
+          - echo "version_name=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+          - echo "version_link=https://github.com/danielemery/demery-home/commits/$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+
       - name: Build
         run: make build
         env:
           DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN }}
+          SITE_VERSION_NAME: ${{ steps.vars.outputs.version_name }}
+          SITE_VERSION_LINK: ${{ steps.vars.outputs.version_link }}
 
       - name: Sync to S3 staging bucket
         uses: keithweaver/aws-s3-github-action@v1.0.0
@@ -61,10 +69,18 @@ jobs:
       - name: Install packages
         run: make install
 
+      - name: Set version info
+        id: vars
+        run: |
+          - echo "version_name=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+          - echo "version_link=https://github.com/danielemery/demery-home/commits/$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+
       - name: Build
         run: make build
         env:
           DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN }}
+          SITE_VERSION_NAME: ${{ steps.vars.outputs.version_name }}
+          SITE_VERSION_LINK: ${{ steps.vars.outputs.version_link }}
 
       - name: Sync to S3 production bucket
         uses: keithweaver/aws-s3-github-action@v1.0.0
