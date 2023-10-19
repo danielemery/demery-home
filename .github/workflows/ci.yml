@@ -25,7 +25,15 @@ jobs:
       - name: Install packages
         run: make install
 
+      - name: Set version info
+        id: vars
+        run: |
+          echo "version_name=ci" >> $GITHUB_OUTPUT
+          echo "version_link=https://github.com/danielemery/demery-home" >> $GITHUB_OUTPUT
+
       - name: Build
         run: make build
         env:
           DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN }}
+          SITE_VERSION_NAME: ${{ steps.vars.outputs.version_name }}
+          SITE_VERSION_LINK: ${{ steps.vars.outputs.version_link }}

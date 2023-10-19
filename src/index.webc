@@ -43,14 +43,18 @@
       :headshot-url="gravatar.thumbnailUrl"
     ></header>
     <item-container>
-        <item name="GitHub" link="https://github.com/danielemery"><github /></item>
-        <!-- <item name="Invariably Abandoned" link="https://invariablyabandoned.com"><blog-solid /></item> -->
-        <!-- <item name="CV" link="https://cv.demery.net"><id-card-alt-solid /></item> -->
+      <item name="GitHub" :link="constants.githubAccountLink"><github /></item>
+      <!-- <item name="Invariably Abandoned" :link="constants.blogLink"><blog-solid /></item> -->
+      <!-- <item name="CV" :link="constants.cvLink"><id-card-alt-solid /></item> -->
     </item-container>
     <link-container>
       <footer-link :link="`mailto:${environment.email}`"><envelope-solid /></footer-link>
       <!-- <footer-link :link="`address`"><bitcoin /></footer-link> -->
-      <footer-link :link="`https://www.linkedin.com/in/daniel-emery-51977823/`"><linkedin /></footer-link>
+      <footer-link :link="constants.linkedInLink"><linkedin /></footer-link>
     </link-container>
+    <site-version
+      :link="environment.versionLink"
+      :text="environment.versionName"
+    ></site-version>
   </body>
 </html>
