@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - 2-migrate-ci-to-github-actions # TODO remove this before merge
 
 env:
   NODE_VERSION: 20.8.0
