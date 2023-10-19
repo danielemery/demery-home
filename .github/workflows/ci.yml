@@ -2,7 +2,7 @@ name: CI
 
 on:
   pull_request:
-    branches: ['main']
+    branches: ["main"]
 
 env:
   NODE_VERSION: 20.8.0
@@ -19,8 +19,13 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
+      - name: Install Doppler CLI
+        uses: dopplerhq/cli-action@v2
+
       - name: Install packages
         run: make install
 
       - name: Build
         run: make build
+        env:
+          DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN }}
