@@ -9,8 +9,10 @@ env:
   NODE_VERSION: 20.8.0
 
 jobs:
-  build:
+  staging-deployment:
     runs-on: ubuntu-latest
+    environment: staging
+    steps:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -20,27 +22,17 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
+      - name: Install Doppler CLI
+        uses: dopplerhq/cli-action@v2
+
       - name: Install packages
         run: make install
 
       - name: Build
         run: make build
+        env:
+          DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN }}
 
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: static-site
-          path: |
-            _site
-
-  staging-deployment:
-    runs-on: ubuntu-latest
-    environment: staging
-    steps:
-      - name: Download build artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: static-site
       - name: Sync to S3 staging bucket
         uses: keithweaver/aws-s3-github-action@v1.0.0
         with:
