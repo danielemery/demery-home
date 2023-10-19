@@ -1,7 +1,9 @@
 module.exports = function () {
   return {
     email: process.env.EMAIL || "",
-    gitFullCommitHash: process.env.GIT_COMMIT_HASH || "local_development",
-    gitShortCommitHash: process.env.GIT_COMMIT_HASH || "local_development",
+    versionName: process.env.SITE_VERSION_NAME || "local_development",
+    versionLink:
+      process.env.SITE_VERSION_LINK ||
+      "https://github.com/danielemery/demery-home",
   };
 };
