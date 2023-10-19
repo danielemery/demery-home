@@ -43,20 +43,36 @@ jobs:
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws_region: ${{ vars.AWS_REGION }}
 
-  # production-deployment:
-  #   runs-on: ubuntu-latest
-  #   environment: production
-  #   steps:
-  #     - name: Download build artifacts
-  #       uses: actions/download-artifact@v3
-  #       with:
-  #         name: static-site
-  #     - name: Sync to S3 production bucket
-  #       uses: keithweaver/aws-s3-github-action@v1.0.0
-  #       with:
-  #         command: sync
-  #         source: ./_site
-  #         destination: s3://${{ vars.AWS_BUCKET_NAME }}
-  #         aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  #         aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  #         aws_region: ${{ vars.AWS_REGION }}
+  prodution-deployment:
+    runs-on: ubuntu-latest
+    environment: production
+    needs: staging-deployment
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install Doppler CLI
+        uses: dopplerhq/cli-action@v2
+
+      - name: Install packages
+        run: make install
+
+      - name: Build
+        run: make build
+        env:
+          DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN }}
+
+      - name: Sync to S3 production bucket
+        uses: keithweaver/aws-s3-github-action@v1.0.0
+        with:
+          command: sync
+          source: ./_site
+          destination: s3://${{ vars.AWS_BUCKET_NAME }}
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws_region: ${{ vars.AWS_REGION }}
