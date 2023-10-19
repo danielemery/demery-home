@@ -14,7 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     environment: staging
     steps:
-    steps:
       - name: Checkout
         uses: actions/checkout@v4
 
