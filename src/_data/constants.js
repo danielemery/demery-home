@@ -6,6 +6,6 @@ module.exports = function () {
     cvLink: "https://cv.demery.net",
     linkedInLink: "https://www.linkedin.com/in/danielemery-au/",
     pgpKeyFingerprint: "D0916BD94979375BACDA84C0A070D0C76C280532",
-    pgpKeyDownloadLink: "https://keys.demery.net/pgp.asc",
+    pgpKeyDownloadLink: "https://keys.demery.net/pgp/daniel_emery.pub.asc",
   };
 };
