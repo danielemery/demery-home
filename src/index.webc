@@ -52,6 +52,10 @@
       <!-- <footer-link :link="`address`"><bitcoin /></footer-link> -->
       <footer-link :link="constants.linkedInLink"><linkedin /></footer-link>
     </link-container>
+    <pgp-key-link
+      :fingerprint="constants.pgpKeyFingerprint"
+      :link="constants.pgpKeyDownloadLink"
+    ></pgp-key-link>
     <site-version
       :link="environment.versionLink"
       :text="environment.versionName"
