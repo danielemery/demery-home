@@ -34,6 +34,9 @@
       h2 {
         font-size: 25px;
       }
+      a {
+        text-decoration: none;
+      }
     </style>
   </head>
   <body>
@@ -42,13 +45,20 @@
       :sub-heading="gravatar.aboutMe"
       :headshot-url="gravatar.thumbnailUrl"
     ></header>
+    <terminal>
+      <terminal-line>Hello, World!</terminal-line>
+    </terminal>
     <item-container>
       <item name="GitHub" :link="constants.githubAccountLink"><github /></item>
-      <!-- <item name="Invariably Abandoned" :link="constants.blogLink"><blog-solid /></item> -->
-      <!-- <item name="CV" :link="constants.cvLink"><id-card-alt-solid /></item> -->
+      <item name="Invariably Abandoned" :link="constants.blogLink"
+        ><blog-solid
+      /></item>
+      <item name="CV" :link="constants.cvLink"><id-card-alt-solid /></item>
     </item-container>
     <link-container>
-      <footer-link :link="`mailto:${environment.email}`"><envelope-solid /></footer-link>
+      <footer-link :link="`mailto:${environment.email}`"
+        ><envelope-solid
+      /></footer-link>
       <!-- <footer-link :link="`address`"><bitcoin /></footer-link> -->
       <footer-link :link="constants.linkedInLink"><linkedin /></footer-link>
     </link-container>

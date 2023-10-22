@@ -1,0 +1,15 @@
+<style>
+  .terminal-container {
+    display: flex;
+    justify-content: center;
+  }
+  .terminal {
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 10px 10px 10px 30px;
+  }
+</style>
+
+<div class="terminal-container">
+  <div class="terminal"><slot></slot></div>
+</div>
