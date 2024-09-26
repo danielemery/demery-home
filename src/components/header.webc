@@ -10,19 +10,12 @@
     width: 100%;
     text-align: center;
   }
-
-  .site-heading img {
-    width: 90px;
-    height: 90px;
-    margin-right: 10px;
-    display: none;
-  }
 </style>
 
 <section class="site-heading">
-  <img :src="headshotUrl" />
   <div>
-    <h1><slot>My Site</slot></h1>
-    <h2 @text="subHeading">A little about me.</h2>
+    <h1>Daniel</h1>
+    <h2>Software engineer by day</h2>
+    <h2>Amateur maker, sysadmin, devops engineer and bitcoiner by night</h2>
   </div>
 </section>
