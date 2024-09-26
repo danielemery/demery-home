@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title @text="`${gravatar.name.formatted} - ${gravatar.aboutMe}`"></title>
+    <title @text="`Daniel`"></title>
     <style @raw="getCss(page.url)" webc:keep></style>
     <script @raw="getJs(page.url)" webc:keep></script>
     <style>
@@ -37,11 +37,7 @@
     </style>
   </head>
   <body>
-    <header
-      @text="`${gravatar.name.formatted}`"
-      :sub-heading="gravatar.aboutMe"
-      :headshot-url="gravatar.thumbnailUrl"
-    ></header>
+    <header></header>
     <item-container>
       <item name="GitHub" :link="constants.githubAccountLink"><github /></item>
       <!-- <item name="Invariably Abandoned" :link="constants.blogLink"><blog-solid /></item> -->
