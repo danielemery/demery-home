@@ -6,6 +6,8 @@ module.exports = function(eleventyConfig) {
     components: "src/components/**/*.webc",
   });
 
+  eleventyConfig.addPassthroughCopy("assets");
+
   eleventyConfig.addTransform("htmlmin", function(content, outputPath) {
     if( outputPath && outputPath.endsWith(".html") ) {
       let minified = htmlmin.minify(content, {
