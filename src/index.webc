@@ -40,7 +40,7 @@
     <header></header>
     <item-container>
       <item name="GitHub" :link="constants.githubAccountLink"><github /></item>
-      <!-- <item name="Invariably Abandoned" :link="constants.blogLink"><blog-solid /></item> -->
+      <item name="Invariably Abandoned" :link="constants.blogLink"><blog-solid /></item>
       <!-- <item name="CV" :link="constants.cvLink"><id-card-alt-solid /></item> -->
     </item-container>
     <link-container>
