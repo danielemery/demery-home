@@ -20,7 +20,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
 
       - name: Install Doppler CLI
-        uses: dopplerhq/cli-action@v2
+        uses: dopplerhq/cli-action@v3
 
       - name: Install packages
         run: make install
