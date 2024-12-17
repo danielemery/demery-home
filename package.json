@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/danielemery/demery-home#readme",
   "dependencies": {
-    "@11ty/eleventy": "^2.0.0",
+    "@11ty/eleventy": "^3.0.0",
     "@11ty/eleventy-fetch": "^5.0.0",
     "@11ty/eleventy-plugin-webc": "^0.8.0",
     "html-minifier": "^4.0.0"
