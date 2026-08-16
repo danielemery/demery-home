@@ -19,7 +19,7 @@ jobs:
           node-version-file: .nvmrc
 
       - name: Install Doppler CLI
-        uses: dopplerhq/cli-action@v3
+        uses: dopplerhq/cli-action@v4
 
       - name: Install packages
         run: make install
@@ -61,7 +61,7 @@ jobs:
           node-version-file: .nvmrc
 
       - name: Install Doppler CLI
-        uses: dopplerhq/cli-action@v3
+        uses: dopplerhq/cli-action@v4
 
       - name: Install packages
         run: make install
