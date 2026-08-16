@@ -15,7 +15,22 @@
 <section class="site-heading">
   <div>
     <h1>Daniel</h1>
-    <h2>Software engineer by day</h2>
-    <h2>Amateur maker, sysadmin, devops engineer and bitcoiner by night</h2>
+    <h2>HTTP 503 &mdash; Out of Office</h2>
+    <h2>Travelling the world for a year. Not working, and not looking for work.</h2>
+    <h2>Retry-After: <span id="retry-after">~31,536,000</span> seconds. Personal projects may still receive the occasional commit.</h2>
   </div>
 </section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Expected return date; adjust if travel plans change.
+    const returnDate = new Date("2027-08-01T00:00:00Z");
+    const el = document.getElementById("retry-after");
+    const tick = () => {
+      const seconds = Math.max(0, Math.floor((returnDate - Date.now()) / 1000));
+      el.textContent = seconds.toLocaleString("en-AU");
+    };
+    tick();
+    setInterval(tick, 1000);
+  });
+</script>
