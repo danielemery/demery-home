@@ -2,5 +2,12 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended"
+  ],
+  "packageRules": [
+    {
+      "description": "Node version is pinned manually to the version installed by the nix development flake (flake.nix). To update: bump nodejs in flake.nix, then run `sync-node-version` inside the dev shell.",
+      "matchDepNames": ["node"],
+      "enabled": false
+    }
   ]
 }
